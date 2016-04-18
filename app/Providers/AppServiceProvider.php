@@ -17,9 +17,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         $url = URL::full();
-        $en = (strpos($url,'en') === false && strpos($url,'id') === false) ? $url.'/en':(strpos($url,'en') ===false)? str_replace('id','en',$url) : $url;
-        $id = (strpos($url,'id') === false && strpos($url,'id') === false) ? $url.'/id':(strpos($url,'id') ===false)? str_replace('en','id',$url) : $url;
-
+        $en = (strpos($url,'en') === false && strpos($url,'id') === false) ? '/en': str_replace('id','en',$url) ;
+        $id = (strpos($url,'en') === false && strpos($url,'id') === false) ? '/id':str_replace('en','id',$url);
         $categories = Category::all();
         view()->share('categories', $categories);
         view()->share('locale',App::getLocale());
